@@ -983,7 +983,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{2192EC6B-223F-485A-B522-AE156ED02DAE}" Name="Motion_Test_Stand" PrjFilePath="..\..\Motion_Test_Stand\Motion_Test_Stand.plcproj" TmcFilePath="..\..\Motion_Test_Stand\Motion_Test_Stand.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Motion_Test_Stand\Motion_Test_Stand.tmc" TmcHash="{AA6DBAD1-03FB-E208-DF77-0BEC71F0C481}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Motion_Test_Stand\Motion_Test_Stand.tmc" TmcHash="{FD83E2AD-2FB0-A589-0826-60AFDE00F906}">
 			<Name>Motion_Test_Stand Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">

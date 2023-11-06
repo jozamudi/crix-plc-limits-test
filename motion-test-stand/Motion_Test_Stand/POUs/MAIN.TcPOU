@@ -53,9 +53,11 @@ IF bInit THEN
 END_IF
 
 fbEPS(eps:= aEPS_TEST[1].stEPS);
+fbEPS.setDescription('IN RANGE[-0.5, 0.5]');
 fbEPS.setBit(0, btest1 AND btest2);
 
 fbEPS(eps:= aEPS_TEST[2].stEPS);
+fbEPS.setDescription('IN RANGE[-2, 2]');
 fbEPS.setBit(0, btest1 AND (NOT btest2));
 
 FOR nIndex := 1 TO 2 DO
