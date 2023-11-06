@@ -45,8 +45,8 @@ IF bInit THEN
 	aEPS_TEST[1].fBwd_Limits := -0.5;
 	aEPS_TEST[1].fFwd_Limits := 0.5;
 	
-	aEPS_TEST[2].fBwd_Limits := -1;
-	aEPS_TEST[2].fFwd_Limits := 1;
+	aEPS_TEST[2].fBwd_Limits := -2;
+	aEPS_TEST[2].fFwd_Limits := 2;
 	
 	
 	bInit := FALSE;
