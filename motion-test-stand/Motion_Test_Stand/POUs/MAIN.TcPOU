@@ -18,6 +18,9 @@ bLimitForwardEnable AT %I* : BOOL;
 
 fbmotion1 : FB_MotionStage;
 
+{attribute 'pytmc' := 'pv: TST:MOTION:EPS_ARRAY'}
+aEPS_TEST : ARRAY [1 .. 2] OF ST_EPSLimits;
+
 	fbEPS : FB_EPS;
 	bInit : BOOL := TRUE;
 	nIndex : UINT := 1;
