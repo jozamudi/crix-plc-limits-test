@@ -54,13 +54,17 @@ IF bInit THEN
 	bInit := FALSE;
 END_IF
 
+fPos := M1.stAxisStatus.fActPosition;
+
 fbEPS(eps:= aEPS_TEST[1].stEPS);
-fbEPS.setDescription('TST_TOGGLE: TRUE');
+fbEPS.setDescription('TST_TOGGLE: TRUE; IN LIMITS');
 fbEPS.setBit(0, btest1);
+fbEPS.setBit(1, F_InRange(fPos, aEPS_TEST[1].fBwd_Limits, aEPS_TEST[1].fFwd_Limits));
 
 fbEPS(eps:= aEPS_TEST[2].stEPS);
 fbEPS.setDescription('TST_TOGGLE: FALSE');
 fbEPS.setBit(0, NOT btest1);
+fbEPS.setBit(1, F_InRange(fPos, aEPS_TEST[2].fBwd_Limits, aEPS_TEST[2].fFwd_Limits));
 
 FOR nIndex := 1 TO 2 DO
 	bEPS_OK := aEPS_TEST[PMPS.CHECKBOUNDS(nIndex,1, 2)].stEPS.bEPS_OK;
@@ -69,7 +73,7 @@ FOR nIndex := 1 TO 2 DO
 	END_IF
 END_FOR
 
-fPos := M1.stAxisStatus.fActPosition;
+
 
 bInRange := F_InRange(fPos, aEPS_TEST[nEPSIndex].fBwd_Limits, aEPS_TEST[nEPSIndex].fFwd_Limits);
 	

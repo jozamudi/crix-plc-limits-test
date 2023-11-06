@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <DUT Name="ST_EPSLimits" Id="{4ee57205-73a9-412c-b8d8-c1dfce7e0790}">
     <Declaration><![CDATA[TYPE ST_EPSLimits :
 STRUCT
     {attribute 'pytmc' := '
         pv: FwdLimit
-        io: i
+        io: io
     '}
     fFwd_Limits : REAL;
     {attribute 'pytmc' := '
         pv: BwdLimit
-        io: i
+        io: io
     '}
     fBwd_Limits	: REAL;
     {attribute 'pytmc' := 'pv: ST'}
