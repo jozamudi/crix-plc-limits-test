@@ -26,8 +26,10 @@ aEPS_TEST : ARRAY [1 .. 2] OF ST_EPSLimits;
 	nIndex : UINT := 1;
 	nEPSIndex : UINT := 1;
 	fPos : LREAL;
+	
+	{attribute 'pytmc' := 'pv: TST:MOTION:EPS_TST_TOGGLE'}
 	btest1	: BOOL := TRUE;
-	btest2	: BOOL := FALSE;
+	
 	bEPS_OK : BOOL;
 	bInRange : BOOL;
 
@@ -53,12 +55,12 @@ IF bInit THEN
 END_IF
 
 fbEPS(eps:= aEPS_TEST[1].stEPS);
-fbEPS.setDescription('IN RANGE[-0.5, 0.5]');
-fbEPS.setBit(0, btest1 AND btest2);
+fbEPS.setDescription('TST_TOGGLE: TRUE');
+fbEPS.setBit(0, btest1);
 
 fbEPS(eps:= aEPS_TEST[2].stEPS);
-fbEPS.setDescription('IN RANGE[-2, 2]');
-fbEPS.setBit(0, btest1 AND (NOT btest2));
+fbEPS.setDescription('TST_TOGGLE: FALSE');
+fbEPS.setBit(0, NOT btest1);
 
 FOR nIndex := 1 TO 2 DO
 	bEPS_OK := aEPS_TEST[PMPS.CHECKBOUNDS(nIndex,1, 2)].stEPS.bEPS_OK;
