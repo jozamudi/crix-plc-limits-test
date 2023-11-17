@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
   <POU Name="MAIN" Id="{2514b5fd-88f4-47c5-be60-871b9fead928}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
@@ -18,7 +18,6 @@ bLimitForwardEnable AT %I* : BOOL;
 
 fbmotion1 : FB_MotionStage;
 
-
 	fbEPS : FB_EPS;
 	bInit : BOOL := TRUE;
 	nIndex : UINT := 1;
@@ -31,6 +30,7 @@ fbmotion1 : FB_MotionStage;
 	bEPS_OK : BOOL;
 	bInRange : BOOL;
 
+	fbEPS_States : FB_CheckEPS;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -66,35 +66,10 @@ fbEPS.setBit(0, NOT btest1);
 fbEPS.setBit(1, F_InRange(fPos, aEPS_TEST[2].fBwd_Limits, aEPS_TEST[2].fFwd_Limits));
 fbEPS.setBit(2, NOT aEPS_TEST[1].stEPS.bEPS_OK);
 
-FOR nIndex := 1 TO 2 DO
-	bEPS_OK := aEPS_TEST[PMPS.CHECKBOUNDS(nIndex,1, 2)].stEPS.bEPS_OK;
-	IF (bEPS_OK) THEN
-		nEPSIndex := nIndex;
-	END_IF
-END_FOR
-
-
 
 bInRange := F_InRange(fPos, aEPS_TEST[nEPSIndex].fBwd_Limits, aEPS_TEST[nEPSIndex].fFwd_Limits);
-	
-fbEPS(eps:=M1.stEPSBackwardEnable);
-fbEPS.setMessage('EPS BACKWARD ENABLE');
-fbEPS.setDescription('EPS 1;EPS 2');
-If fPos > aEPS_TEST[nEPSIndex].fBwd_Limits THEN
-	fbEPS.setBit(UINT_TO_BYTE(nEPSIndex), TRUE);
-	ELSE
-	fbEPS.setBit(UINT_TO_BYTE(nEPSIndex), FALSE);
-END_IF
 
-fbEPS(eps:=M1.stEPSForwardEnable);
-fbEPS.setMessage('EPS FORWARD ENABLE');
-fbEPS.setDescription('EPS 1;EPS 2');
-If fPos < aEPS_TEST[nEPSIndex].fFwd_Limits THEN
-	fbEPS.setBit(UINT_TO_BYTE(nEPSIndex), TRUE);
-	ELSE
-	fbEPS.setBit(UINT_TO_BYTE(nEPSIndex), FALSE);
-END_IF
-
+fbEPS_States(stMotor:=M1, fPosition:=M1.stAxisStatus.fActPosition, aEPSLimits:=aEPS_TEST);
 
 ]]></ST>
     </Implementation>

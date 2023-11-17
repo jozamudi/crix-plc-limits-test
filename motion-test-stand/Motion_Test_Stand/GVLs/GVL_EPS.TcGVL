@@ -2,6 +2,7 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <GVL Name="GVL_EPS" Id="{a95586dd-9f11-4b86-a21d-0cfcaed86ec2}">
     <Declaration><![CDATA[VAR_GLOBAL
+
 {attribute 'pytmc' := 'pv: TST:MOTION:EPS_ARRAY'}
 aEPS_TEST : ARRAY [1 .. 2] OF ST_EPSLimits;
 END_VAR
